@@ -23,6 +23,29 @@ export PATH=${GRADLE_HOME}/bin:${PATH}
 
 ## Download Cord Sample
 
-git clone https://github.com/corda/samples
-cd cordapp-example/
+```
+cd ~/
+git clone https://github.com/corda/samples.git 
+cd samples/cordapp-example
 ./gradlew deployNodes
+```
+
+## Create image
+```
+docker commit {container_id} local/cordapp
+```
+
+## Run Docker
+```
+docker run -it --name cordapp -p 50005:50005 -p 50006:50006 -p 50007:50007 local/corda /bin/bash
+```
+
+Start example
+```
+cd ~/
+cd samples/cordapp-example
+workflows-kotlin/build/nodes/runnodes
+
+# Run node A
+./gradlew runPartyAServer
+```

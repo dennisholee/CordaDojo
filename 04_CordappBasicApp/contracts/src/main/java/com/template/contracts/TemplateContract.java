@@ -22,6 +22,7 @@ public class TemplateContract implements Contract {
 
     // Used to indicate the transaction's intent.
     public interface Commands extends CommandData {
+        class Create implements Commands {}
         class Action implements Commands {}
     }
 }

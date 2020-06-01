@@ -24,7 +24,7 @@ import static com.template.contracts.TemplateContract.ID;
 // ******************
 @InitiatingFlow
 @StartableByRPC
-public class Initiator extends FlowLogic<Void> {
+public class Initiator extends FlowLogic<SignedTransaction> {
     private final ProgressTracker progressTracker = new ProgressTracker();
 
     
@@ -42,7 +42,7 @@ public class Initiator extends FlowLogic<Void> {
 
     @Suspendable
     @Override
-    public Void call() throws FlowException {
+    public SignedTransaction call() throws FlowException {
         // Initiator flow logic goes here.
     	
     	TemplateState state = new TemplateState(this.name, this.otherParty);
@@ -60,12 +60,6 @@ public class Initiator extends FlowLogic<Void> {
         final SignedTransaction signedTx = getServiceHub().signInitialTransaction(txBuilder);
 
         // Finalising the transaction.
-        subFlow(new FinalityFlow(signedTx));
-
-    	
-    	
-    	
-
-        return null;
+        return subFlow(new FinalityFlow(signedTx));
     }
 }

@@ -1,11 +1,19 @@
 package com.template;
 
 import com.google.common.collect.ImmutableList;
+import com.template.flows.Initiator;
 import com.template.flows.Responder;
+
+import net.corda.core.concurrent.CordaFuture;
+import net.corda.core.transactions.SignedTransaction;
 import net.corda.testing.node.MockNetwork;
 import net.corda.testing.node.MockNetworkParameters;
 import net.corda.testing.node.StartedMockNode;
 import net.corda.testing.node.TestCordapp;
+
+import java.security.SignatureException;
+import java.util.concurrent.ExecutionException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,8 +23,9 @@ public class FlowTests {
         TestCordapp.findCordapp("com.template.contracts"),
         TestCordapp.findCordapp("com.template.flows")
     )));
-    private final StartedMockNode a = network.createNode();
-    private final StartedMockNode b = network.createNode();
+   
+    private final StartedMockNode a = network.createPartyNode(null);
+    private final StartedMockNode b = network.createPartyNode(null);
 
     public FlowTests() {
         a.registerInitiatedFlow(Responder.class);
@@ -34,7 +43,14 @@ public class FlowTests {
     }
 
     @Test
-    public void dummyTest() {
+    public void dummyTest() throws InterruptedException, ExecutionException, SignatureException {
+    	
+    	Initiator flow = new Initiator("FooBar", b.getInfo().getLegalIdentities().get(0));
+        CordaFuture<SignedTransaction> future = a.startFlow(flow);
+        network.runNetwork();
+
+        SignedTransaction signedTx = future.get();
+        signedTx.verifySignaturesExcept(b.getInfo().getLegalIdentities().get(0).getOwningKey());
 
     }
 }

@@ -39,8 +39,9 @@ dependencies {
 	testCompileOnly "org.projectlombok:lombok:${lombok_version}"
 	testAnnotationProcessor "org.projectlombok:lombok:${lombok_version}"
 	
-	compileOnly "com.google.collections:google-collections:${google_collections_version}"
+	testCompile "com.github.javafaker:javafaker:1.0.2"
 	
+	compileOnly "com.google.collections:google-collections:${google_collections_version}"
 }
 
 configurations {

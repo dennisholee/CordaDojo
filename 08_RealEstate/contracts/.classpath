@@ -15,11 +15,5 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/"/>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
-	<classpathentry kind="lib" path="/Users/dennislee/.gradle/caches/modules-2/files-2.1/org.mockito/mockito-junit-jupiter/3.4.0/c06e9d5514c82f27707693a4195182415874f0d4/mockito-junit-jupiter-3.4.0.jar" sourcepath="/Users/dennislee/.gradle/caches/modules-2/files-2.1/org.mockito/mockito-junit-jupiter/3.4.0/8115f39cae68b976c432b317abb93609a90004f3/mockito-junit-jupiter-3.4.0-sources.jar">
-		<attributes>
-			<attribute name="gradle_used_by_scope" value="test"/>
-			<attribute name="test" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>

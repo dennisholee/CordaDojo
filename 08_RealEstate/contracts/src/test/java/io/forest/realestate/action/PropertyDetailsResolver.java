@@ -5,6 +5,8 @@ import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
 import org.junit.jupiter.api.extension.ParameterResolver;
 
+import com.github.javafaker.Faker;
+
 import io.forest.realestate.states.PropertyDetails;
 import net.corda.core.contracts.UniqueIdentifier;
 import net.corda.core.identity.Party;
@@ -20,15 +22,17 @@ public class PropertyDetailsResolver implements ParameterResolver {
 	@Override
 	public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext)
 			throws ParameterResolutionException {
-		int propertyId = 0;
-		String propertyAddress = null;
-		int propertyPrice = 0;
+		Faker faker = new Faker();
+		
+		int propertyId = faker.number().randomDigitNotZero();
+		String propertyAddress = faker.address().fullAddress();
+		int propertyPrice = faker.number().numberBetween(100000, 1000000);
 		int buyerId = 0;
 		int sellerId = 0;
 		boolean isMortgageApproved = false;
 		boolean isSurveyorApproved = false;
 		Party owner = null;
-		String description = null;
+		String description = faker.lorem().sentence();
 		String updatedBy = null;
 		String updatedTime = null;
 		UniqueIdentifier linearId = null;

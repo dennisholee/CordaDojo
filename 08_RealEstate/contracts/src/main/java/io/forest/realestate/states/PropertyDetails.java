@@ -2,21 +2,17 @@ package io.forest.realestate.states;
 
 import java.util.List;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.ImmutableList;
 
+import io.forest.realestate.contracts.PropertyContract;
 import io.forest.realestate.schema.PersistentPropertyDetails;
 import io.forest.realestate.schema.PropertyDetailsSchemaV1;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.NonNull;
 import lombok.Value;
-import net.corda.core.contracts.ContractState;
+import net.corda.core.contracts.BelongsToContract;
 import net.corda.core.contracts.LinearState;
 import net.corda.core.contracts.UniqueIdentifier;
 import net.corda.core.identity.AbstractParty;
@@ -26,32 +22,34 @@ import net.corda.core.schemas.PersistentState;
 import net.corda.core.schemas.QueryableState;
 import net.corda.core.serialization.ConstructorForDeserialization;
 
+@BelongsToContract(PropertyContract.class)
 @Value
 @Builder(toBuilder = true)
 public class PropertyDetails implements LinearState, QueryableState {
-//	@Getter
+
 	private final int propertyId;
-//	@Getter
+
+	@NonNull
 	private final String propertyAddress;
-//	@Getter
+
 	private final int propertyPrice;
-//	@Getter
+
 	private final int buyerId;
-//	@Getter
+
 	private final int sellerId;
-//	@Getter
+
 	private final boolean isMortgageApproved;
-//	@Getter
+
 	private final boolean isSurveyorApproved;
-//	@Getter
+
 	private final Party owner;
-//	@Getter
+
 	private final String description;
-//	@Getter
+
 	private final String updatedBy;
-//	@Getter
+
 	private final String updatedTime;
-//	@Getter
+
 	private final UniqueIdentifier linearId;
 
 	public PropertyDetails(int propertyId, String propertyAddress, int propertyPrice, int buyerId, int sellerId,

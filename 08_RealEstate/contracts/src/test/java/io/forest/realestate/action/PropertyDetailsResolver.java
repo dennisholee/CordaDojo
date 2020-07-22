@@ -9,7 +9,9 @@ import com.github.javafaker.Faker;
 
 import io.forest.realestate.states.PropertyDetails;
 import net.corda.core.contracts.UniqueIdentifier;
+import net.corda.core.identity.CordaX500Name;
 import net.corda.core.identity.Party;
+import net.corda.testing.core.TestIdentity;
 
 public class PropertyDetailsResolver implements ParameterResolver {
 
@@ -24,6 +26,8 @@ public class PropertyDetailsResolver implements ParameterResolver {
 			throws ParameterResolutionException {
 		Faker faker = new Faker();
 		
+	//	TestIdentity ownerIdentity = new TestIdentity(new CordaX500Name(faker.name().name(), "London", "GB"));
+		
 		int propertyId = faker.number().randomDigitNotZero();
 		String propertyAddress = faker.address().fullAddress();
 		int propertyPrice = faker.number().numberBetween(100000, 1000000);
@@ -31,7 +35,7 @@ public class PropertyDetailsResolver implements ParameterResolver {
 		int sellerId = 0;
 		boolean isMortgageApproved = false;
 		boolean isSurveyorApproved = false;
-		Party owner = null;
+		Party owner = null;// ownerIdentity.getParty();
 		String description = faker.lorem().sentence();
 		String updatedBy = null;
 		String updatedTime = null;

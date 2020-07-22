@@ -56,6 +56,8 @@ dependencies {
     testCompile "$corda_release_group:corda-node-driver:$corda_release_version"
     
     testCompile "com.github.javafaker:javafaker:1.0.2"
+    
+    testCompile project(":contracts").sourceSets.test.output
 
     // CorDapp dependencies.
     cordapp project(":contracts")

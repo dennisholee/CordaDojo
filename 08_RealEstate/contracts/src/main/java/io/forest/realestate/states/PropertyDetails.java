@@ -78,10 +78,9 @@ public class PropertyDetails implements LinearState, QueryableState {
 		this.linearId = linearId;
 	}
 
-	@NotNull
 	@Override
 	public List<AbstractParty> getParticipants() {
-		return ImmutableList.of(this.getOwner());
+		return ImmutableList.of(this.owner);
 	}
 
 	@Override

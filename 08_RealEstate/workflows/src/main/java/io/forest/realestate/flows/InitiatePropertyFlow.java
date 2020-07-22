@@ -73,8 +73,18 @@ public class InitiatePropertyFlow extends FlowLogic<SignedTransaction>{
 		
 		progressTracker.setCurrentStep(GENERATING_TRANSACTION);
 		
-		PropertyDetails propertyDetails = new PropertyDetails(propertyId, propertyAddress, propertyPrice, buyerId,
-				sellerId, false, false, owner, "New Property Transaction Initiated", updatedBy, updatedTime);
+		PropertyDetails propertyDetails = new PropertyDetails(
+				propertyId, 
+				propertyAddress, 
+				propertyPrice, 
+				buyerId,
+				sellerId,
+				false, 
+				false, 
+				owner, 
+				"New Property Transaction Initiated", 
+				updatedBy, 
+				updatedTime);
 		
 		progressTracker.setCurrentStep(SIGNING_TRANSACTION);
 		
